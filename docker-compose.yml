@@ -1,0 +1,38 @@
+services:
+  # Database MongoDB
+  mongodb:
+    image: mongo:latest
+    container_name: task_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d:ro
+
+  # Backend Go con Gin
+  backend:
+    build: ./backend
+    container_name: task_backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB_NAME=taskdb
+
+  # Frontend Nuxt
+  frontend:
+    build: ./frontend
+    container_name: task_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NUXT_PUBLIC_API_BASE_URL=http://localhost:8080/api
+      - NUXT_API_INTERNAL_BASE_URL=http://backend:8080/api
+    depends_on:
+      - backend
+
+# Volumes
+volumes:
+  mongo_data:

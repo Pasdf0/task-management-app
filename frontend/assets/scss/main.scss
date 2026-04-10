@@ -1,0 +1,37 @@
+// assets/scss/main.scss
+
+@use "bulma";
+
+
+
+html[data-theme='light'],
+:root {
+    // Paleta Base
+  --color-bg: #bbbac6;
+  --color-surface: #e2e2e2;
+  --color-primary: #e2e2e2;
+  --color-text: #1c0f13;
+  --color-subtext: #6e7e85;
+  --color-white: #ffffff;
+
+  // Variables Bulma
+  --bulma-body-background-color: var(--color-bg);
+  --bulma-background: var(--color-bg);
+  --bulma-scheme-main: var(--color-bg);
+  --bulma-scheme-main-bis: var(--color-surface);
+
+  --bulma-primary-h: 25;
+  --bulma-primary-s: 45%;
+  --bulma-primary-l: 65%;
+  --bulma-primary: hsl(var(--bulma-primary-h), var(--bulma-primary-s), var(--bulma-primary-l));
+
+  --bulma-text: var(--color-text);
+  --bulma-text-strong: var(--color-text);
+  --bulma-title-color: var(--color-text);
+  --bulma-subtitle-color: var(--color-subtext);
+
+  --bulma-card-background-color: var(--color-surface);
+  --bulma-box-background-color: var(--color-surface);
+  --bulma-dark: var(--color-subtext);
+  --bulma-white: var(--color-white);
+}
